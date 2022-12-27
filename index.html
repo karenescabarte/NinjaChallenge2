@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninja Game I</title>
+  </head>
+  <body>
+    <div
+      id="heading"
+      style="
+        height: 200px;
+        width: 700px;
+        position: absolute;
+        right: 150px;
+        margin-top: 150px;
+      "
+    >
+      <h1
+        style="font-size: 82px; color: rgb(11, 107, 232); font-family: cursive"
+      >
+        Ninja Challenge 2
+      </h1>
+      <h2 style="font-family: cursive; text-align: center">
+        Coded By: Karen C. Escabarte
+      </h2>
+    </div>
+    <div id="background">
+      <div
+        id="character"
+        style="
+          position: absolute;
+          top: 100px;
+          left: 450px;
+          background-image: url('img/down1.png');
+          width: 59px;
+          height: 86px;
+        "
+      ></div>
+    </div>
+    <div
+      id="border"
+      style="
+        border: 10px dashed;
+        background-color: aquamarine;
+        width: 556px;
+        height: 586px;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      "
+    ></div>
+    <script type="text/javascript">
+      var leftValue = 450;
+      var topValue = 100;
+			var direction = "down";
+			var changeWalkValue = 1;
+
+      function updatePosition() {
+        document.getElementById("character").style.left = leftValue + "px";
+        document.getElementById("character").style.top = topValue + "px";
+				if(changeWalkValue == 1){
+					document.getElementById("character").style.backgroundImage = " url('img/" + direction + changeWalkValue +".png')";
+					changeWalkValue = 2;
+				} else if (changeWalkValue == 2){
+					document.getElementById("character").style.backgroundImage = " url('img/" + direction + changeWalkValue +".png')";
+					changeWalkValue = 1;
+				}
+				
+      }
+
+      document.onkeydown = function (e) {
+        console.log(e);
+        if (e.keyCode == 37) {
+          // left
+          leftValue = leftValue - 10;
+					direction = "left";
+          if (leftValue < 0) {
+            leftValue = 0;
+          }
+        } else if (e.keyCode == 39) {
+          // right
+          leftValue = leftValue + 10;
+					direction = "right";
+          if (leftValue > 500) {
+            leftValue = 500;
+          }
+        } else if (e.keyCode == 40) {
+          // down
+          topValue = topValue + 10;
+					direction = "down";
+          if (topValue > 500) {
+            topValue = 500;
+          }
+        } else if (e.keyCode == 38) {
+          // up
+          topValue = topValue - 10;
+					direction = "top";
+          if (topValue < 0) {
+            topValue = 0;
+          }
+        }
+        updatePosition();
+      };
+    </script>
+  </body>
+</html>
